@@ -1,0 +1,7 @@
+{
+  "name": "pmdm04-finalizadoEjemploCamara",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

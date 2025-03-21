@@ -1,0 +1,17 @@
+<app-page-header titulo="Carrusel"></app-page-header>
+
+<ion-content>
+  <swiper-container [options]="options">
+    <swiper-slide *ngFor="let imagen of usarCamara.getListaUrl(); index as position">
+      <ion-card>
+        <ion-img [src]="imagen" class="swiper-img"></ion-img>
+        <ion-card-header>
+          <ion-card-title>Foto {{position}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-footer>
+          <ion-button (click)="compartirImagen(imagen)">Compartir</ion-button>
+        </ion-card-footer>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

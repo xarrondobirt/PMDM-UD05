@@ -1,0 +1,22 @@
+<app-page-header titulo="Voz"></app-page-header>
+
+<ion-content class="content">
+
+  <div class="control-buttons">
+    <ion-button expand="full" color="primary" (click)="startRecognition()" *ngIf="!recording">
+      Iniciar Reconocimiento de Voz
+    </ion-button>
+    <ion-button expand="full" color="danger" (click)="stopRecognition()" *ngIf="recording">
+      Parar Reconocimiento de Voz
+    </ion-button>
+  </div>
+
+  <!-- Mostrar la foto capturada -->
+  <div *ngIf="photo" class="photo-container">
+    <div class="photo-wrapper">
+      <img [src]="photo" alt="Foto capturada" />
+    </div>
+    <ion-button expand="full" color="tertiary" (click)="sharePhoto()">Compartir Foto</ion-button>
+  </div>
+
+</ion-content>
