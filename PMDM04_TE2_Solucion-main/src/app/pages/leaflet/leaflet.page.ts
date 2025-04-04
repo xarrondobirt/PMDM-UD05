@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-leaflet',
@@ -9,7 +10,7 @@ import * as L from 'leaflet';
 export class LeafletPage implements AfterViewInit {
   private map: L.Map | null = null; // Variable para almacenar el mapa
 
-  constructor() {}
+  constructor() { }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -43,5 +44,26 @@ export class LeafletPage implements AfterViewInit {
       .addTo(this.map)
       .bindPopup('¡Estás en Madrid!')
       .openPopup();
+
+    // ----- Configuración de Leaflet Routing Machine -----
+    const control = L.Routing.control({
+      waypoints: [
+        L.latLng(40.416775, -3.703790), // Punto de inicio (Madrid)
+        L.latLng(40.417438, -3.693370)  // Punto de destino (Museo del Prado)
+      ],
+      routeWhileDragging: true, // Actualiza la ruta al mover waypoints
+      show: false, // Panel de instrucciones
+      lineOptions: {
+        styles: [{ color: '#0066ff', weight: 5 }],
+        extendToWaypoints: true,
+        missingRouteTolerance: 10 // Estilo de la línea de ruta
+      }
+    }).addTo(this.map);
+
+    // Elimina el contenedor de las instrucciones paso a paso
+    setTimeout(() => {
+      const container = document.querySelector('.leaflet-routing-container');
+      if (container) container.remove();
+    }, 100);
   }
 }
